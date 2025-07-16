@@ -31,21 +31,6 @@ The test generates a shuffled deck of Zener cards based on the selected game mod
 * **CSS3:** For styling and animations.
 * **JavaScript:** For game logic, interactivity, and dynamic content updates.
 
-## Getting Started
-
-To run this project locally, simply clone the repository and open the `index.html` file in your web browser.
-
-1.  **Clone the repository:**
-    ```bash
-    git clone [https://github.com/Paul-Verbitsky/Zener-ESP-Test.git](https://github.com/Paul-Verbitsky/Zener-ESP-Test.git)
-    ```
-2.  **Navigate to the project directory:**
-    ```bash
-    cd zener-esp-test
-    ```
-3.  **Open `index.html`:**
-    Double-click `index.html` or open it with your preferred web browser.
-
 ## Usage
 
 1.  **Select Test Mode:** Choose between "Classic (Symbols Only)" or "Hard (Symbols & Colors)" mode at the beginning of a round.
