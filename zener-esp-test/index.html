@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zener ESP Test by Paul Verbitsky</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Zener Test</h1>
+        
+        <div class="game-area">
+            <div class="card-and-button">
+                <div id="card-container" class="card-container initial-fade-in">
+                    <div id="card-flipper" class="card-flipper">
+                        <div id="card-back-face" class="card-face card-back-face"></div>
+                        <img id="card-front-face" class="card-face card-front-face" alt="">
+                    </div>
+                    <p id="card-placeholder-text">No Card</p> 
+                </div>
+                <button id="draw-card-btn">Start Test</button>
+                
+                <div class="card-back-selection">
+                    <div class="color-box blue active" data-color="Blue"></div>
+                    <div class="color-box red" data-color="Red"></div>
+                    <div class="color-box brown" data-color="Brown"></div>
+                    <div class="color-box green" data-color="Green"></div>
+                </div>
+            </div>
+
+            <div class="guess-section">
+                <h2>Testing Mode:</h2>
+                <div class="game-mode-selection">
+                    <input type="radio" id="mode-symbol-only" name="gameMode" value="symbol-only" checked>
+                    <label for="mode-symbol-only">Classic (Symbols Only)</label><br>
+                    <input type="radio" id="mode-symbol-color" name="gameMode" value="symbol-color">
+                    <label for="mode-symbol-color">Hard (Symbols & Colors)</label>
+                </div>
+
+                <h2>Your Guess:</h2>
+                <div id="symbol-guess-group" class="guess-option-group">
+                    <p>Symbol:</p>
+                    <input type="radio" id="guess-circle" name="guessSymbol" value="Circle">
+                    <label for="guess-circle">Circle</label>
+                    <input type="radio" id="guess-square" name="guessSymbol" value="Square">
+                    <label for="guess-square">Square</label>
+                    <input type="radio" id="guess-cross" name="guessSymbol" value="Cross">
+                    <label for="guess-cross">Cross</label>
+                    <input type="radio" id="guess-star" name="guessSymbol" value="Star">
+                    <label for="guess-star">Star</label>
+                    <input type="radio" id="guess-waves" name="guessSymbol" value="Waves">
+                    <label for="guess-waves">Waves</label>
+                </div>
+
+                <div id="color-guess-group" class="guess-option-group" style="display: none;">
+                    <p>Color:</p>
+                    <input type="radio" id="guess-black" name="guessColor" value="Black">
+                    <label for="guess-black">Black</label>
+                    <input type="radio" id="guess-red" name="guessColor" value="Red">
+                    <label for="guess-red">Red</label>
+                    <input type="radio" id="guess-blue" name="guessColor" value="Blue">
+                    <label for="guess-blue">Blue</label>
+                    <input type="radio" id="guess-green" name="guessColor" value="Green">
+                    <label for="guess-green">Green</label>
+                    <input type="radio" id="guess-yellow" name="guessColor" value="Yellow">
+                    <label for="guess-yellow">Yellow</label>
+                </div>
+
+                <button id="check-guess-btn">Check Guess</button>
+            </div>
+        </div>
+        
+        <p id="guess-message">Please press 'Start Test' button!</p>
+        <p id="score-display">Score: 0 / 0</p>
+        <p id="cards-left-display">Cards Left: 25</p>
+        <p class="footer-text"><a href="#" id="about-test-link">About the Zener ESP Test</a> | <a href="https://github.com/Paul-Verbitsky/Zener-ESP-Test">GitHub Repository</a></p>
+    </div>
+
+    <div id="results-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Zener Test Results</h2>
+            <p id="final-results-message"></p>
+            <button id="start-new-round-modal-btn">Start New Round</button>
+        </div>
+    </div>
+
+    <div id="about-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="about-close-button">&times;</span>
+            <h2>About the Zener ESP Test</h2>
+            <div id="about-test-content">
+                <p>The Zener Test is a classic experiment designed to investigate forms of extrasensory perception (ESP), particularly clairvoyance. Participants attempt to identify the symbol or attributes of a hidden card without any sensory input.</p>
+                <h3>Test Modes Explained:</h3>
+                <h4>Classic (Symbols Only) Mode:</h4>
+                <p>In this traditional mode, you are presented with Zener cards featuring one of five unique symbols: Circle, Square, Cross, Star, or Waves. Your task is to guess the hidden symbol of each card. In a standard deck of 25 cards, there are five of each symbol. By pure chance, you would typically expect to guess 5 out of 25 cards correctly.</p>
+                <h4>Hard (Symbols & Colors) Mode:</h4>
+                <p>This advanced mode introduces an additional layer of complexity. Each Zener card not only has a unique symbol but also a distinct color (Black, Red, Blue, Green, or Yellow). Your challenge is to correctly identify <strong>both</strong> the symbol and the color of the hidden card. With 25 unique symbol-color combinations, the probability of a correct guess by chance is significantly lower. In this mode, you would typically expect to guess only 1 out of 25 cards correctly by pure chance.</p>
+                <h3>Understanding Your Results:</h3>
+                <p>Your test results are compared against a "chance level" – the score you would statistically achieve by simply guessing randomly.</p>
+                <ul>
+                    <li><strong>Significantly Above Chance:</strong> If your score is noticeably higher than the expected chance level, it suggests a non-random pattern in your guesses. While intriguing, it's important to remember that such results in a single short test do not definitively prove ESP but indicate an outcome unlikely to be purely coincidental.</li>
+                    <li><strong>Close to Chance Level:</strong> A score around the chance level is typical for random guessing.</li>
+                    <li><strong>Below Chance Level:</strong> A score significantly below the chance level might suggest a pattern of consistently incorrect guesses, which can sometimes be as statistically interesting as a high score, though still often attributed to random variation in a short series of trials.</li>
+                </ul>
+                <h3>What score might be considered "ESP-like" in this test (for entertainment purposes):</h3>
+                <p>While this is a simplified test for fun and personal exploration, and real ESP requires rigorous scientific evidence, we can define scores that are highly unlikely to occur by chance within this specific setup:</p>
+                <h4>In Classic (Symbols Only) Mode (25 cards):</h4>
+                <ul>
+                    <li>A score of <strong>8 or more</strong> correct guesses is statistically significant (meaning there's only about a 10.9% chance of getting it randomly).</li>
+                    <li>A score of <strong>10 or more</strong> correct guesses is considered highly significant (about 1.18% chance randomly).</li>
+                    <li>A score of <strong>15 or more</strong> is extremely rare by chance (roughly 1 in 73,700). Such a result would be highly unusual and warrants further investigation in a scientific context.</li>
+                </ul>
+                <h4>In Hard (Symbols & Colors) Mode (25 cards):</h4>
+                <ul>
+                    <li>Remember, the chance level here is 1 correct guess.</li>
+                    <li>A score of <strong>3 or more</strong> correct guesses would be considered very significant, as it's three times the expected random score.</li>
+                    <li>A score of <strong>5 or more</strong> would be extremely rare by chance in this more challenging mode.</li>
+                </ul>
+                <p>It's crucial to understand that these thresholds are for illustrative purposes within the context of this test. For a more rigorous scientific assessment of ESP, experiments require very strict controls, a much larger number of trials, and complex statistical analysis.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
