@@ -86,10 +86,50 @@ In a standard 25-card Zener test where you guess one of five symbols, the expect
 
 It's crucial to understand that these thresholds are for illustrative purposes within the context of this test. For a more rigorous scientific assessment of ESP, experiments require very strict controls, a much larger number of trials, and complex statistical analysis.
 
+## Mathematical Model of the Zener ESP Test Operation
+
+The operational mathematical model of this Zener ESP Test is governed by the algorithms for deck creation, shuffling, and guess evaluation, ensuring a fair and statistically sound basis for the test.
+
+### 1. Deck Creation (`createDeck` Function)
+
+The test generates a deck of 25 Zener cards. The composition of the deck varies based on the selected game mode:
+
+* **Classic (Symbols Only) Mode:**
+    * The `SYMBOLS` array `["Circle", "Square", "Cross", "Star", "Waves"]` defines the five unique symbols.
+    * The deck is populated by pushing each of these five symbols **five times** into the deck array. This results in a total of 25 cards, with an equal distribution of each symbol (5 of each).
+* **Hard (Symbols & Colors) Mode:**
+    * In addition to the `SYMBOLS`, the `COLORS` array `["Black", "Red", "Blue", "Green", "Yellow"]` defines the five unique colors.
+    * The deck is created by generating **all 25 unique combinations** of symbols and colors. Each symbol is paired with each color exactly once. This ensures that every possible symbol-color pair (e.g., "Circle-Black", "Square-Red") appears exactly once in the 25-card deck.
+
+### 2. Deck Shuffling (`shuffleArray` Function)
+
+Once the deck is created, it is thoroughly shuffled using a common **Fisher-Yates (Knuth) shuffle algorithm**. This algorithm ensures that every possible permutation of the deck is equally likely.
+
+The shuffle operates as follows:
+* It iterates backward from the last element to the second element of the array (`i` from `array.length - 1` down to `1`).
+* In each iteration, it generates a random index `j` such that `0 <= j <= i`.
+* It then swaps the element at index `i` with the element at index `j`.
+
+This process guarantees that the order of the cards is truly random before the test begins, preventing any predictable patterns that could influence the participant's guesses or invalidate the statistical analysis.
+
+### 3. Guess Evaluation (`checkGuess` Function)
+
+After a card is drawn and the user makes a guess, the `checkGuess` function compares the user's input with the actual card's attributes.
+
+* **Comparison Logic:**
+    * The user's guessed symbol is compared directly with the `currentCard.symbol`.
+    * If in "Hard (Symbols & Colors)" mode, the user's guessed color is also compared directly with the `currentCard.color`.
+* **Scoring:**
+    * A correct guess increments the `score` variable.
+    * In "Classic (Symbols Only)" mode, a guess is correct if `guessedSymbol === currentCard.symbol`.
+    * In "Hard (Symbols & Colors)" mode, a guess is correct only if `guessedSymbol === currentCard.symbol` **AND** `guessedColor === currentCard.color`.
+
+This systematic approach ensures that the test adheres to the principles of a controlled experiment, allowing any results deviating significantly from chance to be noteworthy (for entertainment purposes, as specified in the "About" modal).
+
 ## Contribution
 
 Feel free to fork this repository and submit pull requests for any improvements or bug fixes.
 
 ## License
 
-This project is licensed under the **GNU Lesser General Public License Version 3, 29 June 2007** - see the `LICENSE` file for details.
+This project is licensed under the **GNU Lesser General Public License Version 3** - see the `LICENSE` file for details.
