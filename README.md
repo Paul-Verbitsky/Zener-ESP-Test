@@ -4,6 +4,8 @@
   <img src="zener-esp-test.png" alt="Zener ESP Test">
 </p>
 
+[**DEMO**](https://pvproject.free.nf/zener/index.html)
+
 This repository contains the code for an interactive web-based Zener ESP Test, designed to explore forms of extrasensory perception, specifically clairvoyance. Users attempt to identify the symbol and/or color of a hidden Zener card.
 
 ## Overview
